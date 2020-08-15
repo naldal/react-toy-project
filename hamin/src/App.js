@@ -1,13 +1,10 @@
 import React from 'react';
-import Counter from './Counter';
-import MyComponent from './MyComponent.js';
-import MyCompo2 from './MyCompo2.js';
-import Say from './Say.js';
+import EventPractice7 from './EventPractice7.js';
 
 const App = () => {
     return (
         <div>
-            <Say />
+            <EventPractice7 />
         </div>
     );
 };
