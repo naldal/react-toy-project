@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class LifeCycleSample extends Component {
     state = {
@@ -10,11 +10,11 @@ export default class LifeCycleSample extends Component {
 
     constructor(props) {
         super(props);
-        console.log('constructor');
+        console.log("constructor");
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('getDerivedStateFromProps');
+        console.log("getDerivedStateFromProps");
         if (nextProps.color !== prevState.color) {
             return {
                 color: nextProps.color,
@@ -24,17 +24,17 @@ export default class LifeCycleSample extends Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount');
+        console.log("componentDidMount");
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('shouldComponentUpdate', nextProps, nextState);
+        console.log("shouldComponentUpdate", nextProps, nextState);
         // 숫자의 마지막 자리가 4면 리랜더링하지 않습니다.
         return nextState.number % 10 !== 4;
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount');
+        console.log("componentWillUnmount");
     }
 
     handleClick = () => {
@@ -44,22 +44,23 @@ export default class LifeCycleSample extends Component {
     };
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log('getSnapshotBeforeUpdate');
+        console.log("getSnapshotBeforeUpdate");
         if (prevProps.color !== this.props.color) {
+            console.log(this.myRef.style.color);
             return this.myRef.style.color;
         }
         return null;
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-        console.log('componentDidUpdate', prevProps, prevState);
+        console.log("componentDidUpdate", prevProps, prevState);
         if (snapShot) {
-            console.log('업데이트 되기 직전 색상', snapShot);
+            console.log("업데이트 되기 직전 색상", snapShot);
         }
     }
 
     render() {
-        console.log('render');
+        console.log("render");
 
         const style = {
             color: this.props.color,
@@ -67,6 +68,7 @@ export default class LifeCycleSample extends Component {
 
         return (
             <div>
+                {this.props.missing.value}
                 <h1 style={style} ref={(ref) => (this.myRef = ref)}>
                     {this.state.number}
                 </h1>

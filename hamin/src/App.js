@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import LifeCycleSample from './LifeCycleSample.js';
+import React, { Component } from "react";
+import LifeCycleSample from "./LifeCycleSample.js";
+import ErrorBoundary from "./ErrorBoundary.js";
 
 function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 1677215).toString(16);
+    return "#" + Math.floor(Math.random() * 1677215).toString(16);
 }
 
 class App extends Component {
     state = {
-        color: '#000000',
+        color: "#000000",
     };
 
     handleClick = () => {
@@ -20,7 +21,9 @@ class App extends Component {
         return (
             <div>
                 <button onClick={this.handleClick}>랜덤색상</button>
-                <LifeCycleSample color={this.state.color} />
+                <ErrorBoundary>
+                    <LifeCycleSample color={this.state.color} />
+                </ErrorBoundary>
             </div>
         );
     }

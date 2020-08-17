@@ -1,4 +1,4 @@
 node_modules/
 .prettierrc
-.DS_stor
+.DS_store
 react.code-workspace
