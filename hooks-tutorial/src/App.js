@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./Counter.js";
+import Average from "./Average.js";
 
 function App() {
     return (
         <div>
-            <Counter />
+            <Average />
         </div>
     );
 }
