@@ -30,11 +30,6 @@ const App = () => {
                 username: form.username,
             };
 
-            //array에 새 항목 등록
-            // setData({
-            //     ...data,
-            //     array: data.array.concat(info),
-            // });
             setData(
                 produce((draft) => {
                     draft.array.push(info);
@@ -52,10 +47,6 @@ const App = () => {
 
     //항목을 삭제하는 함수
     const onRemove = useCallback((id) => {
-        // setData({
-        //     ...data,
-        //     array: data.array.filter((info) => info.id !== id),
-        // });
         setData(
             produce((draft) => {
                 draft.array.splice(
