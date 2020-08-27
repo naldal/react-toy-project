@@ -9,6 +9,10 @@ export default class HistorySample extends Component {
         this.props.history.push('/');
     };
     componentDidMount() {
+        this.unblock = this.props.history.block('정말 떠나실 건가요?');
+    }
+
+    componentWillUnmount() {
         //컴포넌트가 언마운트 되면 질문을 멈춤
         if (this.unblock) {
             this.unblock();
