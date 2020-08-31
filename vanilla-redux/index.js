@@ -62,6 +62,9 @@ const render = () => {
 };
 
 render();
+
+// 리스너 함수(render) 를 파라미터로 넣어서 호출하면
+// 액션이 디스패치되어 상태가 업데이트 될 때마다 호출됨
 store.subscribe(render);
 
 // 디스패치의 파라미터에 action을 넣어서 reducer 안에서 사용
