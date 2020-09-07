@@ -17,8 +17,10 @@ function App() {
       axios(apiurl + '&s=' + state.s).then(({ data }) => {
         let results = data.Search;
 
-        setState((prevState) => {
-          return { ...prevState, results: results };
+        console.log(data);
+
+        setState((state) => {
+          return { ...state, results: results };
         });
       });
     }
@@ -35,8 +37,6 @@ function App() {
   const openPopup = (id) => {
     axios(apiurl + '&i=' + id).then(({ data }) => {
       let result = data;
-
-      console.log(id);
 
       setState((prevState) => {
         return { ...prevState, selected: result };
