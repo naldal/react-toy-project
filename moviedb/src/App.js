@@ -33,8 +33,11 @@ function App() {
   };
 
   const openPopup = (id) => {
-    axios(apiurl + '&=' + id).then(({ data }) => {
+    axios(apiurl + '&i=' + id).then(({ data }) => {
       let result = data;
+
+      console.log(id);
+      console.log(data);
 
       setState((prevState) => {
         return { ...prevState, selected: result };
@@ -55,7 +58,6 @@ function App() {
       </header>
       <main>
         <Search handleInput={handleInput} search={search} />
-
         <Results results={state.results} openPopup={openPopup} />
 
         {typeof state.selected.Title != 'undefined' ? (
