@@ -1,24 +1,30 @@
 import React from "react";
-import "./App.css";
-import { Grid } from "@material-ui/core";
-import Header from "./Header";
-import Content from "./Content";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 
-function App() {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        color: "red",
+        border: "none",
+    },
+}));
+
+export default function IconButtons() {
+    const classes = useStyles();
+
     return (
-        <Grid container direction="column">
-            <Grid item>
-                <Header />
-            </Grid>
-            <Grid itme container>
-                <Grid item xs={false} sm={2} />
-                <Grid item xs={12} sm={8}>
-                    <Content />
-                </Grid>
-                <Grid item xs={false} sm={2} />
-            </Grid>
-        </Grid>
+        <>
+            <Button
+                classes={{
+                    root: classes.root,
+                }}
+                // className={classes.root}
+                variant="outlined"
+                color="primary"
+                size="small"
+            >
+                Small fuckin button
+            </Button>
+        </>
     );
 }
-
-export default App;
