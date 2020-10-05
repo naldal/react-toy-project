@@ -1,30 +1,20 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Button, createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import { purple } from "@material-ui/core/colors";
+import TypographyDemo from "./TypographyDemo";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        color: "red",
-        border: "none",
+const theme = createMuiTheme({
+    palette: {
+        primary: purple,
     },
-}));
+});
 
 export default function IconButtons() {
-    const classes = useStyles();
-
     return (
-        <>
-            <Button
-                classes={{
-                    root: classes.root,
-                }}
-                // className={classes.root}
-                variant="outlined"
-                color="primary"
-                size="small"
-            >
-                Small fuckin button
-            </Button>
-        </>
+        <ThemeProvider theme={theme}>
+            <TypographyDemo />
+        </ThemeProvider>
     );
 }
