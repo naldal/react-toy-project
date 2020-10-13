@@ -1,9 +1,10 @@
-import { AppBar, Grid, Toolbar, Card, CardContent, CircularProgress, CardMedia, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, Grid, Toolbar, Card, CardContent, CircularProgress, CardMedia, Typography, TextField } from "@material-ui/core";
+import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles, fade } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { toFirstCharUppercase } from "./constants";
 import axios from "axios";
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     pokedexContainer: {
         paddingTop: "20px",
         paddingLeft: "50px",
@@ -15,12 +16,34 @@ const useStyles = makeStyles({
     CardContent: {
         textAlign: "center",
     },
-});
+    searchContainer: {
+        display: "flex",
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        marginTop: "5px",
+        marginBottom: "5px"
+    },
+    searchIcon: {
+        alignSelf: "flex-end",
+        marginBottom: "5px"
+    },
+    searchInput: {
+        width: "200px",
+        margin: "5px"
+    }
+}));
 
 const Pokedex = (props) => {
     const { history } = props;
     const classes = useStyles();
     const [pokemonData, setPokemonData] = useState();
+    const [ filter, setFilter ] = useState("");
+
+    const handleSearchChange = (e) => {
+        setFilter(e.target.value);
+    }
+
 
     useEffect(()=>{
         axios
@@ -59,11 +82,23 @@ const Pokedex = (props) => {
     return (
         <>
             <AppBar position="static">
-                <Toolbar />
+                <Toolbar>
+                    <div className={classes.searchContainer}>
+                        <SearchIcon className={classes.searchIcon}/>
+                        <TextField 
+                            onChange={handleSearchChange}
+                            className={classes.searchInput}
+                            label="Pokemon"
+                            variant="standard"
+                        />
+                    </div>
+                </Toolbar>
             </AppBar>
             {pokemonData ? (
                 <Grid container className={classes.pokedexContainer} spacing={2}>
-                    {Object.keys(pokemonData).map((pokemonId) => getPokemonCard(pokemonId))}
+                    {Object.keys(pokemonData).map((pokemonId) =>
+                    pokemonData[pokemonId].name.includes(filter) &&
+                    getPokemonCard(pokemonId))}
                 </Grid>
             ) : (
                 <CircularProgress />
